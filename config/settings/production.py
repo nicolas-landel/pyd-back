@@ -106,9 +106,6 @@ STORAGES = {
             "file_overwrite": False,
         },
     },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
 }
 MEDIA_URL = f"https://{aws_s3_domain}/media/"
 

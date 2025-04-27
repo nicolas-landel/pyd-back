@@ -4,6 +4,7 @@ import pytest
 from django.core.management import call_command
 
 from pyd.users.models import User
+# from django.test import TestCase
 
 
 @pytest.mark.django_db
