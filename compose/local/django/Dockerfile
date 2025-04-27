@@ -23,7 +23,7 @@ COPY ./pyproject.toml ./poetry.lock ./
 
 # Install dependencies using Poetry
 RUN poetry config virtualenvs.create false \
-  && poetry install --no-root --only dev
+  && poetry install --no-root --with dev
 
 
 # Python 'run' stage

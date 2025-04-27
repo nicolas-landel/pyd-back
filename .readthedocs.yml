@@ -17,4 +17,5 @@ sphinx:
 # Python requirements required to build your docs
 python:
   install:
-    - requirements: requirements/local.txt
+    - method: poetry
+      path: .

@@ -78,3 +78,5 @@ services:
     ports:
       - '5555:5555'
     command: /start-flower
+      --broker=${CELERY_BROKER_URL}
+      --port=5555
