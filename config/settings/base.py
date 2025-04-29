@@ -290,20 +290,9 @@ CELERY_WORKER_HIJACK_ROOT_LOGGER = False
 ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
 # https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_LOGIN_METHODS = {"email"}
-# https://docs.allauth.org/en/latest/account/configuration.html
-ACCOUNT_SIGNUP_FIELDS = {
-    "username": {"required": False},
-    "email": {"required": True},
-    "first_name": {"required": False},
-    "last_name": {"required": False},
-    "password1": {"required": True},
-    "password2": {"required": True},
-}
-# https://docs.allauth.org/en/latest/account/configuration.html
+ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*", "first_name", "last_name", "username"]
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-# https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-# https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_ADAPTER = "pyd.users.adapters.AccountAdapter"
 # https://docs.allauth.org/en/latest/account/forms.html
 ACCOUNT_FORMS = {"signup": "pyd.users.forms.UserSignupForm"}
