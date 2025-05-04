@@ -15,6 +15,12 @@ class UserManager(BaseUserManager):
         if not email:
             msg = "The given email must be set"
             raise ValueError(msg)
+        if self.model.objects.filter(email=email).exists():
+            msg = "The given email is already in use"
+            raise ValueError(msg)
+        if password is None:
+            msg = "The given password must be set"
+            raise ValueError(msg)
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.password = make_password(password)
