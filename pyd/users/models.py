@@ -1,9 +1,9 @@
 
 from typing import ClassVar
+import uuid
 
 from django.contrib.auth.models import AbstractUser
-from django.db.models import CharField
-from django.db.models import EmailField
+from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -18,10 +18,12 @@ class User(AbstractUser):
     """
 
     # First and last name do not cover name patterns around the globe
-    name = CharField(_("Name of User"), blank=True, max_length=255)
-    first_name = CharField(_("first name"), blank=True, default="", max_length=150)
-    last_name = CharField(_("last name"), blank=True, default="", max_length=150)
-    email = EmailField(_("email address"), unique=True)
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(_("Name of User"), blank=True, max_length=255)
+    first_name = models.CharField(_("first name"), blank=True, default="", max_length=150)
+    last_name = models.CharField(_("last name"), blank=True, default="", max_length=150)
+    email = models.EmailField(_("email address"), unique=True)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     username = None
 
     USERNAME_FIELD = "email"

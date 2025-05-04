@@ -3,6 +3,7 @@ import django.contrib.auth.validators
 import django.utils.timezone
 from django.db import migrations
 from django.db import models
+import uuid
 
 import pyd.users.models
 
@@ -21,12 +22,7 @@ class Migration(migrations.Migration):
             fields=[
                 (
                     "id",
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
+                    models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False),
                 ),
                 ("password", models.CharField(max_length=128, verbose_name="password")),
                 (
@@ -76,6 +72,14 @@ class Migration(migrations.Migration):
                     models.CharField(
                         blank=True, max_length=255, verbose_name="Name of User",
                     ),
+                ),
+                (
+                    "last_name",
+                    models.CharField(blank=True, default='', max_length=150, verbose_name='last name'),
+                ),
+                (
+                    "first_name",
+                    models.CharField(blank=True, default='', max_length=150, verbose_name='first name'),
                 ),
                 (
                     "groups",
