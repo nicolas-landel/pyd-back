@@ -81,10 +81,12 @@ THIRD_PARTY_APPS = [
     "corsheaders",
     "drf_spectacular",
     "dj_rest_auth",
+    "simple_history",
 ]
 
 LOCAL_APPS = [
     "pyd.users",
+    "pyd.place",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -146,6 +148,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    "simple_history.middleware.HistoryRequestMiddleware",
 ]
 
 # CORS_ALLOWED_ORIGINS = [

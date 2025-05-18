@@ -5,12 +5,12 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include
 from django.urls import path
 from django.views import defaults as default_views
-# from django.views.generic import TemplateView
-from rest_framework.views import APIView
 from drf_spectacular.views import SpectacularAPIView
 from drf_spectacular.views import SpectacularSwaggerView
 from rest_framework.authtoken.views import obtain_auth_token
 
+# from django.views.generic import TemplateView
+from rest_framework.views import APIView
 
 urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
@@ -26,8 +26,7 @@ urlpatterns += [
     # DRF auth token
     path("api/auth/", include("dj_rest_auth.urls")),
     path("api/auth/registration/", include("dj_rest_auth.registration.urls")),
-    path('api/auth/social/', include('allauth.socialaccount.urls')),
-
+    path("api/auth/social/", include("allauth.socialaccount.urls")),
     # path("api/auth-token/", obtain_auth_token, name="obtain_auth_token"),
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     path(
@@ -35,8 +34,8 @@ urlpatterns += [
         SpectacularSwaggerView.as_view(url_name="api-schema"),
         name="api-docs",
     ),
-
-    
+    path("users/", include("pyd.users.urls", namespace="users")),
+    path("place/", include("pyd.place.urls")),
 ]
 
 # if settings.DEBUG:
